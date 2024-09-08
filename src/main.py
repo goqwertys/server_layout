@@ -1,6 +1,8 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 # import time
 
+from src.paths import root_join
+
 host_name = 'localhost'
 server_port = 8080
 
@@ -8,7 +10,12 @@ class MyServer(BaseHTTPRequestHandler):
     """ A class that is responsible for processing incoming requests from clients """
     def do_GET(self):
         """ Method for handling incoming GET requests """
-        pass
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        with open(root_join('data', 'home.html'), encoding='utf-8') as f:
+            content = f.read()
+        self.wfile.write(bytes(content, 'utf-8'))
 
     def do_POST(self):
         """ Method for handling POST requests """

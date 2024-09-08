@@ -13,7 +13,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-        with open(root_join('data', 'home.html'), encoding='utf-8') as f:
+        with open(root_join('html', 'home.html'), encoding='utf-8') as f:
             content = f.read()
         self.wfile.write(bytes(content, 'utf-8'))
 

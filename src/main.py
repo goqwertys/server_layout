@@ -1,4 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+
 # import time
 
 from src.paths import root_join
@@ -13,13 +14,17 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-        with open(root_join('html', 'home.html'), encoding='utf-8') as f:
+        with open(root_join('html', 'contacts.html'), encoding='utf-8') as f:
             content = f.read()
         self.wfile.write(bytes(content, 'utf-8'))
 
     def do_POST(self):
         """ Method for handling POST requests """
-        pass
+        content_length = int(self.headers['Content-Length'])
+        body = self.rfile.read(content_length)
+        print(body)
+        self.send_response(200)
+        self.end_headers()
 
 if __name__ == '__main__':
     # Initialization of a web server that will accept requests in the

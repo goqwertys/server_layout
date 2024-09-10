@@ -1,6 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-# import time
 
 from src.paths import root_join
 
